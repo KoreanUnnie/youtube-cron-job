@@ -1,0 +1,110 @@
+{
+  "runners": [
+    null,
+    {
+      "key": "x",
+      "schedules": [
+        {
+          "functions": [
+            {
+              "function": "getChannelDetailsAndUpdateDB",
+              "processName": "1,KoreanUnnie+KoreaNow-CHANNELINFO:EVERY,HOUR",
+              "query": "?part=snippet,brandingSettings,statistics&id=UCR-L8oZkHzgDh1ahJhH2WDQ,UCcA88_Z7wQWMoQ9bKwjuanA"
+            }
+          ],
+          "schedule": {
+            "name": "CHANNEL INFO EVERY HOUR",
+            "rule": {
+              "minute": 0
+            }
+          }
+        },
+        {
+          "functions": [
+            {
+              "function": "getVideosAndUpdateDB",
+              "processName": "1,KoreanUnnie-LIVE:EVERY,0,10",
+              "query": "?channelId=UCcA88_Z7wQWMoQ9bKwjuanA&part=snippet&type=video&eventType=live"
+            },
+            {
+              "function": "getVideosAndUpdateDB",
+              "processName": "1,KoreanUnnie-VIDEOS:EVERY,0,10",
+              "query": "?&channelId=UCcA88_Z7wQWMoQ9bKwjuanA&part=snippet&type=video&order=date&maxResults=5"
+            },
+            {
+              "function": "getVideosAndUpdateDB",
+              "processName": "1,KoreaNow-VIDEOS:EVERY,0,10",
+              "query": "?&channelId=UCR-L8oZkHzgDh1ahJhH2WDQ&part=snippet&type=video&order=date&maxResults=5"
+            }
+          ],
+          "schedule": {
+            "name": "VIDEO INFO EVERY 0, 10 SEC",
+            "rule": {
+              "second": [0, 10]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "xx",
+      "schedules": [
+        {
+          "functions": [
+            {
+              "function": "getVideosAndUpdateDB",
+              "processName": "2,KoreanUnnie-LIVE:EVERY,20,30",
+              "query": "?channelId=UCcA88_Z7wQWMoQ9bKwjuanA&part=snippet&type=video&eventType=live"
+            },
+            {
+              "function": "getVideosAndUpdateDB",
+              "processName": "2,KoreanUnnie-VIDEOS:EVERY,20,30",
+              "query": "?&channelId=UCcA88_Z7wQWMoQ9bKwjuanA&part=snippet&type=video&order=date&maxResults=5"
+            },
+            {
+              "function": "getVideosAndUpdateDB",
+              "processName": "2,KoreaNow-VIDEOS:EVERY,20,30",
+              "query": "?&channelId=UCR-L8oZkHzgDh1ahJhH2WDQ&part=snippet&type=video&order=date&maxResults=5"
+            }
+          ],
+          "schedule": {
+            "name": "VIDEO INFO EVERY 20, 30 SEC",
+            "rule": {
+              "second": [20, 30]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "xxx",
+      "schedules": [
+        {
+          "functions": [
+            {
+              "function": "getVideosAndUpdateDB",
+              "processName": "3,KoreanUnnie-LIVE:EVERY,40,50",
+              "query": "?channelId=UCcA88_Z7wQWMoQ9bKwjuanA&part=snippet&type=video&eventType=live"
+            },
+            {
+              "function": "getVideosAndUpdateDB",
+              "processName": "3,KoreanUnnie-VIDEOS:EVERY,40,50",
+              "query": "?&channelId=UCcA88_Z7wQWMoQ9bKwjuanA&part=snippet&type=video&order=date&maxResults=5"
+            },
+            {
+              "function": "getVideosAndUpdateDB",
+              "processName": "3,KoreaNow-VIDEOS:EVERY,40,50",
+              "query": "?&channelId=UCR-L8oZkHzgDh1ahJhH2WDQ&part=snippet&type=video&order=date&maxResults=5"
+            }
+          ],
+          "schedule": {
+            "name": "VIDEO INFO EVERY 40, 50 SEC",
+            "rule": {
+              "second": [40, 50]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

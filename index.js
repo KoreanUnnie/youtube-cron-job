@@ -1,17 +1,19 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-} else {
-  require("./http"); // run http server
-}
-const api = require('./api');
-require('./cron');
+require("dotenv").config();
+require("./http"); // run http server
+const firebase = require("./api/firebase");
 
-// tasks that should run on start:
-const run = async () => { 
-  const regular = await api.youtube.getChannelVideos();
-  const live = await api.youtube.getLiveVideos();
-  api.youtube.updateDBwithVideos(regular);
-  api.youtube.updateDBwithVideos(live);
-  api.youtube.getChannelDetailsAndUpdateDB();
-}
-run();
+// Catch Errors before they crash the app.
+process.on("uncaughtException", err => {
+  const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
+  console.error("Uncaught Exception: ", errorMsg);
+  // process.exit(1); //Eh, should be fine, but maybe handle this?
+});
+
+process.on("unhandledRejection", err => {
+  console.error("Uncaught Promise Error: ", err);
+  // process.exit(1); //Eh, should be fine, but maybe handle this?
+});
+process.on("SIGINT", function() {
+  console.log("Starting queue shutdown");
+  firebase.disconnectRunner();
+});
